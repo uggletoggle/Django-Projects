@@ -1,0 +1,17 @@
+{% extends 'myApp/base.html' %}
+
+{% block content %}
+    <div class="container jumbotron">
+        <h1 style="font-size: 30px">{{ evento }} - {{ evento.fecha.time }}</h1>
+        <hr>
+        <h2>Observaciones</h2>
+        <p>{{ evento.observaciones }}</p>
+        <h3>{{ evento.combo }}</h3>
+        <p>
+            {% for adicional in evento.combo.getElementos %}
+                {{ adicional }}
+            {% endfor %}
+        </p>
+        <button onclick="window.location='{% url 'index' %}'" class="btn btn-default">Regresar</button>
+    </div>
+{% endblock %}

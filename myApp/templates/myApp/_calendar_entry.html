@@ -1,0 +1,35 @@
+{% extends 'myApp/index.html' %}
+{% block content %}
+ <div class="row" style="background:#b4bcc2">
+    <div class = "col-lg-3">
+        <h3>{{ evento.fecha.date }}</h3>
+            <h4>{{ evento.fecha.time }}</h4>
+            <br>
+            <p>
+                {{ evento.sucursal }}
+            </p>
+        </div>
+        <div class = "col-lg-3">
+            <br>
+            <div class="text-left">
+                <p style="font-size: large"><strong>Contacto</strong></p>
+                <p>Solicitante: {{ evento.nombre_solicitante }}</p>
+                <p>Nombre Cumpleañero: {{ evento.nombre_cumpleanero }}</p>
+                <p>Telefono: {{ evento.telefono_solicitante }}</p>
+            </div>
+        </div>
+        <div class = "col-lg-3">
+            <br>
+            <p style="font-size: large"><strong>Seña: {{ evento.sena }}</strong></p>
+            <p>Fecha de Pago: {{ evento.fecha_sena }}</p>
+            <p>Debe: {{ evento.deuda }}</p>
+            <p>Vence: {{ evento.vencimiento }}</p>
+        </div>
+        <div class = "col-lg-3">
+            <br><br>
+            <button onclick="window.location='{% url 'detalles' pk=evento.id %}'" type="button" class="btn btn-info btn-block">Ver Detalles</button>
+            <button data-id="{{ evento.id }}" onclick="deleteCalendarEntry(this)" class="btn btn-danger btn-block">Eliminar</button>
+        </div>
+</div>
+    <br>
+{% endblock %}

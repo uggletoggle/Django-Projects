@@ -1,0 +1,52 @@
+{% extends 'myApp/base.html' %}
+{% block content %}
+    <form method="POST">
+            {% csrf_token %}
+            <form class="container">
+        <navbar class="navbar navbar-dark bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.f_inicial }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.f_cierre }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pt-2">
+                            <button type="sumbit" class="btn btn-success btn-block"><strong>Filtrar por Fecha</strong></button>
+                        </div>
+                    </div>
+                </div>
+        </navbar>
+            </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h1>Agenda de Eventos</h1>
+            </div>
+            <div class="col-lg-3">
+                <br>
+                <button onclick="window.location='{% url 'add' %}'" type="button" class="btn btn-warning">Agregar Evento</button>
+            </div>
+            <div class="col-lg-2">
+                <br>
+                <button onclick="window.location='{% url 'index'  %}'" type="button" class="btn btn-default">Ver Todo</button>
+            </div>
+            <div class="col-lg-3">
+                <br>
+                <button onclick="window.location='{% url 'sucursal' pk=1 %}'" type="button" class="btn btn-default">Sucursal 1</button>
+                <button onclick="window.location='{% url 'sucursal' pk=2%}'" type="button" class="btn btn-default">Sucursal 2</button>
+            </div>
+        </div>
+    </div>
+       <hr style="border-color:#c4d4c6">
+    <div class="container">
+           {% for evento in eventos %}
+            {% include 'myApp/_calendar_entry.html' %}
+           {% endfor %}
+    </div>
+
+{% endblock %}

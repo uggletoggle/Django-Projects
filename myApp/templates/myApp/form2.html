@@ -1,0 +1,71 @@
+{% extends 'myApp/base.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{%  bootstrap_css %}
+{%  bootstrap_javascript jquery='full' %}
+{{ form2.media }}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <br>
+                <h2>Agregar Nuevo Evento</h2>
+            </div>
+            <div class="col-lg-3">
+                  <br>
+                    <button onclick="window.location='{% url 'index' %}'" type="button" class="btn btn-default">Regresar</button>
+            </div>
+        </div>
+        <hr style="border-color: #b8cacb">
+    </div>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form2.sucursal|as_crispy_field }}
+                    {{ form2.combo|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    <!---->
+                        <br>
+                        {{ form2.fecha }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    {{ form2.encargado|as_crispy_field }}
+                </div>
+                <div class="col-lg-3">
+                    {{ form2.nombre_cumpleañero|as_crispy_field }}
+                </div>
+                <div class="col-lg-3">
+                    {{ form2.nombre_solicitante|as_crispy_field }}
+                </div>
+                <div class="col-lg-3">
+                    {{ form2.telefono_solicitante|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    {{ form2.adicionales|as_crispy_field }}
+                    <br>
+                    {{ form2.precio|as_crispy_field }}
+                </div>
+                <div class="col-lg-3">
+                    {{ form2.seña|as_crispy_field }}
+                    {{ form2.fecha_seña|as_crispy_field}}
+                </div>
+                <div class="col-lg-6">
+                    {{ form2.observaciones|as_crispy_field }}
+                </div>
+            </div>
+            <br>
+            <div class="col-lg-4">
+                <button type="sumbit" class="btn btn-success btn-block"><strong>Cargar</strong></button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

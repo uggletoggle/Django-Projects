@@ -1,0 +1,24 @@
+{% extends 'myApp/base.html' %}
+{% block content %}
+<div class="container form-group">
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Agregar Nuevo Evento</h2>
+        </div>
+        <div class="col-lg-8">
+            <br>
+            <button onclick="window.location ='{%  url 'index' %}'" type="button" class="btn btn-success">Regresar</button>
+        </div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.errors }}
+            <br>
+            <input placeholder="{{ field.label }}" name="{{ field.name }}" class="form-control">
+        {% endfor %}
+        <br>
+        <button type="sumbit" class="btn btn-success">Enviar</button>
+    </form>
+</div>
+{% endblock %}
